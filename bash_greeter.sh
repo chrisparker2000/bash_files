@@ -19,7 +19,7 @@ fi
 __print_hostname ()
 {
     local STR_HOSTNAME="-= $HOSTNAME =-"
-    local SYS_INFO="-= $(uname -srm) =-"
+    local SYS_INFO="-= $(uname -srm) / OS X $(sw_vers -productVersion) =-"
 
     if [[ -x /usr/local/bin/figlet ]]; then
         #Print hostename with figlets
@@ -38,6 +38,7 @@ __print_sysinfo ()
 {
     local SYS_INFO=$(uname -srm)
     local SYS_INFO="-= $SYS_INFO =-"
+    local SYS_INFO="-= $(uname -srm) / OS X $(sw_vers -productVersion) =-"
 
     printf ${ORANGE}
     __print_centered_string "$SYS_INFO" "0"
