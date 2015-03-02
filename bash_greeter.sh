@@ -16,7 +16,7 @@ __print_hostname ()
 {
     local STR_HOSTNAME="-= $HOSTNAME =-"
 
-    if [[ -x /usr/bin/figlet ]]; then
+    if [[ -x /usr/local/bin/figlet ]]; then
         #Print hostename with figlets
         __print_ascii_art "$STR_HOSTNAME"
     else
@@ -29,7 +29,7 @@ __print_hostname ()
 
 __print_sysinfo ()
 {
-    local SYS_INFO=$(uname -srmo)
+    local SYS_INFO=$(uname -srm)
     local SYS_INFO="-= $SYS_INFO =-"
 
     printf ${ORANGE}
@@ -43,7 +43,7 @@ __print_sysinfo ()
 __print_diskinfo ()
 {
     # disk usage, minus def and swap
-    local DISK_INFO=$(df -h -x tmpfs -x devtmpfs -x ecryptfs -x fuse.encfs -T)
+    local DISK_INFO=$(df -H -l)
     
     printf ${POWDER_BLUE}
     __print_centered_multiline "$DISK_INFO" "0"
@@ -55,9 +55,9 @@ __print_diskinfo ()
 
 __print_lastlogins ()
 {
-    # LAST_LOGINS=$(last -in 3 -ad)
+    # LAST_LOGINS=$(last -4)
     # printf "%s\n" "$LAST_LOGINS" | boxes -d ada-box -ph8v1
-    local LAST_LOGINS=$(last -in 3 -ad)
+    local LAST_LOGINS=$(last -4)
     #local linecount=$(printf "%s\n" "$LAST_LOGINS" | grep -c '^')
 
     printf ${GREY}
