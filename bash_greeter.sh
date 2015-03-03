@@ -18,8 +18,8 @@ fi
 
 __print_hostname ()
 {
-    local STR_HOSTNAME="-= $HOSTNAME =-"
-    local SYS_INFO="-= $(uname -srm) / OS X $(sw_vers -productVersion) =-"
+	printf ${NORMAL}
+	local STR_HOSTNAME="-= $HOSTNAME =-"
 
     if [[ -x /usr/local/bin/figlet ]]; then
         #Print hostename with figlets
@@ -36,11 +36,10 @@ __print_hostname ()
 
 __print_sysinfo ()
 {
-    local SYS_INFO=$(uname -srm)
-    local SYS_INFO="-= $SYS_INFO =-"
     local SYS_INFO="-= $(uname -srm) / OS X $(sw_vers -productVersion) =-"
 
-    printf ${ORANGE}
+    #printf ${ORANGE}
+    printf ${RED}
     __print_centered_string "$SYS_INFO" "0"
 
     printf "${NORMAL}\n"
@@ -51,9 +50,10 @@ __print_sysinfo ()
 __print_diskinfo ()
 {
     # disk usage, minus def and swap
-    local DISK_INFO=$(df -H -l)
+    local DISK_INFO=$(df -P -H -l)
     
-    printf ${POWDER_BLUE}
+    #printf ${POWDER_BLUE}
+    printf ${BLUE}
     __print_centered_multiline "$DISK_INFO" "0"
     # printf "%s\n" "$DISK_INFO" | boxes -d ada-box -ph8v1
 
@@ -68,7 +68,8 @@ __print_lastlogins ()
     local LAST_LOGINS=$(last -4)
     #local linecount=$(printf "%s\n" "$LAST_LOGINS" | grep -c '^')
 
-    printf ${GREY}
+    #printf ${GREY}
+    printf ${NORMAL}
     __print_centered_multiline "$LAST_LOGINS" "0"
 
     printf "${NORMAL}\n"
@@ -77,7 +78,7 @@ __print_lastlogins ()
 
 __print_news ()
 {
-    printf ${BETTER_GREY}
+    printf ${NORMAL}
     net_news=$(host -t txt istheinternetonfire.com | cut -f 2 -d '"' | sed "s/[\]; /\n/g")
     __print_centered_multiline "$net_news" "0"
     printf "${NORMAL}\n\n"
@@ -88,7 +89,6 @@ __print_news ()
 __print_hostname
 __print_sysinfo
 
-#__print_diskinfo
 __print_diskinfo
 
 __print_lastlogins
