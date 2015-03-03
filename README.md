@@ -23,7 +23,7 @@ brew install figlet
 
 ### Invoke init file from .bashrc
 
-Add the following at the end of your .bashrc in your home directory:
+Add the following at the end of your .bash_profile in your home directory:
 
 ```bash
 # Bash_dotfiles initialization
