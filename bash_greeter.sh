@@ -93,10 +93,10 @@ __print_diskinfo
 
 __print_lastlogins
 
-#__set_ls_aliases
-#__set_apt_aliases
+__set_ls_aliases
+__set_brew_aliases
 
-#__print_apt_shortcuts_info
+__print_brew_shortcuts_info
 
 #__print_line
 #__print_news
